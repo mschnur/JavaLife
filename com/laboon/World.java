@@ -70,20 +70,13 @@ public class World {
 	
     private int getNumNeighbors(Cell[][] world, int x, int y) {
 	int size = world.length;
-	int leftX = (x - 1) % size;
+	int leftX = ((x == 0) ? (size - 1) : (x));
 	int rightX = (x + 1) % size;
-	int upY = (y - 1) % size;
-	int downY = (y + 1) % size;
-
-	for (int j = 0; j < 10000; j++) {
-	    if (leftX == -1) { leftX = size - 1; }
-	    if (rightX == -1) { rightX = size - 1; }
-	    if (upY == -1) { upY = size - 1; }
-	    if (downY == -1) { downY = size - 1; }
-	}
+	int upY =  ((y == 0) ? (size - 1) : (y));
+	int downY = (y + 1) % size;	
 		
 	int numNeighbors = 0;
-
+	
 	if (world[leftX][upY].isAlive())    { numNeighbors++; }
 	if (world[leftX][downY].isAlive())  { numNeighbors++; }
 	if (world[leftX][y].isAlive())      { numNeighbors++; }
